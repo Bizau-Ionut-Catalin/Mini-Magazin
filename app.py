@@ -1,20 +1,15 @@
-# --- Date initiale obligatorii ---
 produse = ["espresso", "latte", "cappuccino", "ceai", "ciocolata calda", "croissant"]
 preturi = [8.0, 12.0, 11.0, 7.0, 10.0, 9.0]
 stoc = [20, 15, 18, 30, 12, 10]
 cant_comanda = [0, 0, 0, 0, 0, 0]
 reducere_curenta = 0.0
-tip_reducere_activa = "fara"  # Retinem numele pentru recalculare la finalizare
-
-
-# --- Functii obligatorii ---
+tip_reducere_activa = "fara"
 
 def afisare_meniu_produse(produse, preturi, stoc):
     print("\n--- MENIU PRODUSE ---")
     print(f"{'ID':<4} {'Produs':<18} {'Pret':<8} {'Stoc':<5}")
     for i in range(len(produse)):
         print(f"{i:<4} {produse[i]:<18} {preturi[i]:<8.2f} {stoc[i]:<5}")
-
 
 def adaugare_produs(cant_comanda, stoc, index, cantitate):
     if 0 <= index < len(produse):
@@ -31,7 +26,6 @@ def adaugare_produs(cant_comanda, stoc, index, cantitate):
         print("Eroare: Index invalid.")
     return False
 
-
 def scadere_produs(cant_comanda, index, cantitate):
     if 0 <= index < len(produse):
         if cantitate > 0:
@@ -47,13 +41,11 @@ def scadere_produs(cant_comanda, index, cantitate):
         print("Eroare: Index invalid.")
     return False
 
-
 def calcul_total(cant_comanda, preturi):
     total = 0.0
     for i in range(len(cant_comanda)):
         total += cant_comanda[i] * preturi[i]
     return total
-
 
 def stabilire_reducere(total, tip):
     if total <= 0: return 0.0
@@ -80,7 +72,6 @@ def stabilire_reducere(total, tip):
         valoare = total
     return valoare
 
-
 def afisare_bon(cant_comanda, produse, preturi, reducere):
     total_brut = calcul_total(cant_comanda, preturi)
     print("\n========= BON FISCAL =========")
@@ -94,19 +85,14 @@ def afisare_bon(cant_comanda, produse, preturi, reducere):
     print(f"TOTAL FINAL:         {max(0, total_brut - reducere):>6.2f} lei")
     print("==============================\n")
 
-
 def finalizare_comanda(stoc, cant_comanda):
     for i in range(len(cant_comanda)):
         stoc[i] -= cant_comanda[i]
         cant_comanda[i] = 0
 
-
 def anulare_comanda(cant_comanda):
     for i in range(len(cant_comanda)):
         cant_comanda[i] = 0
-
-
-# --- Bucla Principala ---
 
 while True:
     print("\n=== CAFENEA - MENIU PRINCIPAL ===")
